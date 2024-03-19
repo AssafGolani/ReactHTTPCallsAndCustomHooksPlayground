@@ -8,8 +8,8 @@ export async function fetchAvailablePlaces() {
   return responseData.places;
 }
 
-export async function updateUserPlaceS(places) {
-  response = await fetch("http://localhost:3000/user-places", {
+export async function updateUserPlaces(places) {
+  const response = await fetch("http://localhost:3000/user-places", {
     method: "PUT",
     body: JSON.stringify({ places }),
     headers: { "Content-Type": "application/json" },
@@ -21,4 +21,14 @@ export async function updateUserPlaceS(places) {
   }
 
   return resData.message;
+}
+
+export async function fetchUserPlaces() {
+  const response = await fetch("http://localhost:3000/user-places");
+  const responseData = await response.json();
+  if (!response.ok) {
+    throw new Error("Failed to fetch user places.");
+  }
+
+  return responseData.places;
 }
